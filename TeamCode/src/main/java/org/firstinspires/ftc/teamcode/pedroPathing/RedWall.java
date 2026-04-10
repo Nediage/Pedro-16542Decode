@@ -146,6 +146,14 @@ public class RedWall extends OpMode {
                             throw new RuntimeException(e);
                         }
                     })
+                    .addPath(
+                            new BezierLine(
+                                    new Pose(86.500, 90.500),
+                                    new Pose(82, 54)
+                            )
+                    )
+                    .setLinearHeadingInterpolation(Math.toRadians(225), Math.toRadians(90))
+                    .addParametricCallback(0.1, robotFunctions::stopShooters)
                     .build();
         }
     }
