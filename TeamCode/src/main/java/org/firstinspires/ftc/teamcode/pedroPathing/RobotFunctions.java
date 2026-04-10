@@ -12,6 +12,14 @@ public class RobotFunctions {
     private DcMotor intake;
     private DcMotor midWheel;
     private Servo   trigger;
+    private int shootState = 0;
+    private long shootStateStartTime = 0;
+
+    public void startShoot() {
+        shootState = 1;
+        shootStateStartTime = System.currentTimeMillis();
+        trigger.setPosition(0.0);
+    }
 
     // Constructor — maps both motors from hardware config
     public RobotFunctions(HardwareMap hardwareMap) {
@@ -69,18 +77,46 @@ public class RobotFunctions {
         midWheel.setPower(0.0);
         rightShooter.setPower(0.0);
     }
-    public void shoot() throws InterruptedException {
-        trigger.setPosition(0.0);
-        wait(1000);
-        trigger.setPosition(0.65);
-        wait(500);
-        spinIntake(0.8);
-        midWheel.setPower(0.8);
-        wait(1000);
-        stopIntake();
-        midWheel.setPower(0.0);
-        trigger.setPosition(0.0);
-        wait(1000);
-        trigger.setPosition(0.65);
+    public void updateShoot() {
+        long elapsed = System.currentTimeMillis() - shootStateStartTime;
+
+        switch (shootState) {
+            case 0:
+                // idle, do nothing
+                break;
+            case 1: // wait 1000ms after setting trigger to 0.0
+                if (elapsed >= 1000) {
+                    trigger.setPosition(0.65);
+                    shootStateStartTime = System.currentTimeMillis();
+                    shootState = 2;
+                }
+                break;
+            case 2: // wait 500ms after setting trigger to 0.65
+                if (elapsed >= 500) {
+                    spinIntake(0.8);
+                    midWheel.setPower(1.0);
+                    shootStateStartTime = System.currentTimeMillis();
+                    shootState = 3;
+                }
+                break;
+            case 3: // wait 1000ms with intake running
+                if (elapsed >= 1000) {
+                    stopIntake();
+                    midWheel.setPower(0.0);
+                    trigger.setPosition(0.0);
+                    shootStateStartTime = System.currentTimeMillis();
+                    shootState = 4;
+                }
+                break;
+            case 4: // wait 1000ms after resetting trigger
+                if (elapsed >= 1000) {
+                    trigger.setPosition(0.65);
+                    shootState = 0; // done
+                }
+                break;
+        }
+    }
+    public boolean isShootDone() {
+        return shootState == 0;
     }
 }

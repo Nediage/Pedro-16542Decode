@@ -11,7 +11,7 @@ import com.pedropathing.follower.Follower;
 import com.pedropathing.paths.PathChain;
 import com.pedropathing.geometry.Pose;
 
-@Autonomous(name = "BlueDepot", group = "Autonomous")
+@Autonomous(name = "RedDepot", group = "Autonomous")
 @Configurable // Panels
 public class RedDepot extends OpMode {
     private TelemetryManager panelsTelemetry; // Panels Telemetry instance
@@ -73,13 +73,7 @@ public class RedDepot extends OpMode {
                     )
                     .setLinearHeadingInterpolation(Math.toRadians(216), Math.toRadians(220))
                     .addParametricCallback(0.5, () -> robotFunctions.spinShooters(1.0))
-                    .addParametricCallback(1.0, () -> {
-                        try {
-                            robotFunctions.shoot();
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                    })
+                    .addParametricCallback(1.0, () -> robotFunctions.startShoot())
                     .addPath(
                             new BezierCurve(
                                     new Pose(87.041, 97.400),
@@ -106,13 +100,7 @@ public class RedDepot extends OpMode {
                     )
                     .setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(220))
                     .addParametricCallback(0.5, () -> robotFunctions.spinShooters(1.0))
-                    .addParametricCallback(1.0, () -> {
-                        try {
-                            robotFunctions.shoot();
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                    })
+                    .addParametricCallback(1.0, () -> robotFunctions.startShoot())
                     .addPath(
                             new BezierCurve(
                                     new Pose(87.041, 97.779),
@@ -139,13 +127,7 @@ public class RedDepot extends OpMode {
                     )
                     .setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(220))
                     .addParametricCallback(0.5, () -> robotFunctions.spinShooters(1.0))
-                    .addParametricCallback(1.0, () -> {
-                        try {
-                            robotFunctions.shoot();
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                    })
+                    .addParametricCallback(1.0, () -> robotFunctions.startShoot())
                     .addPath(
                             new BezierLine(
                                     new Pose(87.041, 97.779),
