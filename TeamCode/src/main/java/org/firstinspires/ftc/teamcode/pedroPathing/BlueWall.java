@@ -134,7 +134,7 @@ public class BlueWall extends OpMode {
                     .addPath(
                             new BezierLine(
                                     new Pose(24.000, 58.500),
-                                    new Pose(52, 90.4)
+                                    new Pose(52, 90.5)
                             )
                     )
                     .setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(315))
@@ -146,6 +146,14 @@ public class BlueWall extends OpMode {
                             throw new RuntimeException(e);
                         }
                     })
+                    .addPath(
+                            new BezierLine(
+                                    new Pose(52, 90.500),
+                                    new Pose(58.5, 54)
+                            )
+                    )
+                    .setLinearHeadingInterpolation(Math.toRadians(315), Math.toRadians(270))
+                    .addParametricCallback(0.1, robotFunctions::stopShooters)
                     .build();
         }
     }

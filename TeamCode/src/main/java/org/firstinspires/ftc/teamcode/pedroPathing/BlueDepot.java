@@ -146,6 +146,14 @@ public class BlueDepot extends OpMode {
                             throw new RuntimeException(e);
                         }
                     })
+                    .addPath(
+                            new BezierLine(
+                                    new Pose(56.959, 97.779),
+                                    new Pose(38.30897583429229, 79.72727272727275)
+                            )
+                    )
+                    .setLinearHeadingInterpolation(Math.toRadians(225), Math.toRadians(225))
+                    .addParametricCallback(0.1, robotFunctions::stopShooters)
                     .build();
         }
     }

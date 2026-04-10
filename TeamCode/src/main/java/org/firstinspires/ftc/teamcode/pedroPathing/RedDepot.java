@@ -146,6 +146,14 @@ public class RedDepot extends OpMode {
                             throw new RuntimeException(e);
                         }
                     })
+                    .addPath(
+                            new BezierLine(
+                                    new Pose(87.041, 97.779),
+                                    new Pose(99.149, 77.256)
+                            )
+                    )
+                    .setLinearHeadingInterpolation(Math.toRadians(220), Math.toRadians(220))
+                    .addParametricCallback(0.1, robotFunctions::stopShooters)
                     .build();
         }
     }
