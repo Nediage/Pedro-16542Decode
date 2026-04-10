@@ -56,15 +56,18 @@ public class RobotFunctions {
         rightShooter.setPower(0.0);
     }
 
-    // Check if flywheels are running
     public boolean isRunning() {
         return leftShooter.getPower() > 0 || rightShooter.getPower() > 0;
     }
     public void spinIntake(double power) {
         intake.setPower(power);
+        midWheel.setPower(0.8);
+        rightShooter.setPower(-0.1);
     }
     public void stopIntake() {
         intake.setPower(0.0);
+        midWheel.setPower(0.0);
+        rightShooter.setPower(0.0);
     }
     public void shoot() throws InterruptedException {
         trigger.setPosition(0.0);

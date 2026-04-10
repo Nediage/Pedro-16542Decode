@@ -13,7 +13,7 @@ import com.pedropathing.geometry.Pose;
 
 @Autonomous(name = "BlueDepot", group = "Autonomous")
 @Configurable // Panels
-public class BlueDepot extends OpMode {
+public class RedDepot extends OpMode {
     private TelemetryManager panelsTelemetry; // Panels Telemetry instance
     public Follower follower; // Pedro Pathing follower instance
     private RobotFunctions robotFunctions;
@@ -67,11 +67,11 @@ public class BlueDepot extends OpMode {
             MainChain = follower.pathBuilder()
                     .addPath(
                             new BezierLine(
-                                    new Pose(22.342, 123.055),
-                                    new Pose(56.959, 97.779)
+                                    new Pose(120.500, 123.055),
+                                    new Pose(87.041, 97.400)
                             )
                     )
-                    .setLinearHeadingInterpolation(Math.toRadians(324), Math.toRadians(320))
+                    .setLinearHeadingInterpolation(Math.toRadians(216), Math.toRadians(220))
                     .addParametricCallback(0.5, () -> robotFunctions.spinShooters(1.0))
                     .addParametricCallback(1.0, () -> {
                         try {
@@ -82,29 +82,29 @@ public class BlueDepot extends OpMode {
                     })
                     .addPath(
                             new BezierCurve(
-                                    new Pose(56.959, 97.779),
-                                    new Pose(56.884, 80.940),
-                                    new Pose(33.636, 82.889)
+                                    new Pose(87.041, 97.400),
+                                    new Pose(82.774, 90.221),
+                                    new Pose(110.364, 82.500)
                             )
                     )
-                    .setLinearHeadingInterpolation(Math.toRadians(320), Math.toRadians(180))
+                    .setLinearHeadingInterpolation(Math.toRadians(220), Math.toRadians(0))
                     .addParametricCallback(0.1, robotFunctions::stopShooters)
                     .addParametricCallback(1.0, () -> robotFunctions.spinIntake(0.8))
                     .addPath(
                             new BezierLine(
-                                    new Pose(33.636, 82.889),
-                                    new Pose(23.539, 82.687)
+                                    new Pose(110.364, 82.500),
+                                    new Pose(120.000, 82.500)
                             )
                     )
                     .setTangentHeadingInterpolation()
                     .addParametricCallback(1.0, robotFunctions::stopIntake)
                     .addPath(
                             new BezierLine(
-                                    new Pose(23.539, 82.687),
-                                    new Pose(56.959, 97.779)
+                                    new Pose(120.000, 82.500),
+                                    new Pose(87.041, 97.779)
                             )
                     )
-                    .setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(320))
+                    .setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(220))
                     .addParametricCallback(0.5, () -> robotFunctions.spinShooters(1.0))
                     .addParametricCallback(1.0, () -> {
                         try {
@@ -115,29 +115,29 @@ public class BlueDepot extends OpMode {
                     })
                     .addPath(
                             new BezierCurve(
-                                    new Pose(56.959, 97.779),
-                                    new Pose(30.119, 70.998),
-                                    new Pose(33.473, 58.500)
+                                    new Pose(87.041, 97.779),
+                                    new Pose(79.131, 67.904),
+                                    new Pose(110.364, 58.500)
                             )
                     )
-                    .setLinearHeadingInterpolation(Math.toRadians(320), Math.toRadians(180))
+                    .setLinearHeadingInterpolation(Math.toRadians(220), Math.toRadians(0))
                     .addParametricCallback(0.1, robotFunctions::stopShooters)
                     .addParametricCallback(1.0, () -> robotFunctions.spinIntake(0.8))
                     .addPath(
                             new BezierLine(
-                                    new Pose(33.473, 58.500),
-                                    new Pose(24.000, 58.500)
+                                    new Pose(110.364, 58.500),
+                                    new Pose(120.000, 58.500)
                             )
                     )
                     .setTangentHeadingInterpolation()
                     .addParametricCallback(1.0, robotFunctions::stopIntake)
                     .addPath(
                             new BezierLine(
-                                    new Pose(24.000, 58.500),
-                                    new Pose(56.959, 97.779)
+                                    new Pose(120.000, 58.500),
+                                    new Pose(87.041, 97.779)
                             )
                     )
-                    .setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(320))
+                    .setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(220))
                     .addParametricCallback(0.5, () -> robotFunctions.spinShooters(1.0))
                     .addParametricCallback(1.0, () -> {
                         try {
