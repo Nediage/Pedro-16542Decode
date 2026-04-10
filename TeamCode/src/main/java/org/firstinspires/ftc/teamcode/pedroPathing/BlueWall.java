@@ -13,7 +13,7 @@ import com.pedropathing.geometry.Pose;
 
 @Autonomous(name = "BlueDepot", group = "Autonomous")
 @Configurable // Panels
-public class BlueDepot extends OpMode {
+public class BlueWall extends OpMode {
     private TelemetryManager panelsTelemetry; // Panels Telemetry instance
     public Follower follower; // Pedro Pathing follower instance
     private RobotFunctions robotFunctions;
@@ -37,7 +37,7 @@ public class BlueDepot extends OpMode {
         panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
         follower = Constants.createFollower(hardwareMap);
-        follower.setStartingPose(new Pose(22.342, 123.055, Math.toRadians(324)));
+        follower.setStartingPose(new Pose(59, 8, Math.toRadians(90)));
 
         // Paths defined in the Paths class
         robotFunctions = new RobotFunctions(hardwareMap);
@@ -67,11 +67,11 @@ public class BlueDepot extends OpMode {
             MainChain = follower.pathBuilder()
                     .addPath(
                             new BezierLine(
-                                    new Pose(22.342, 123.055),
-                                    new Pose(56.959, 97.779)
+                                    new Pose(59, 8),
+                                    new Pose(52, 90.4)
                             )
                     )
-                    .setLinearHeadingInterpolation(Math.toRadians(324), Math.toRadians(320))
+                    .setLinearHeadingInterpolation(Math.toRadians(90), Math.toRadians(315))
                     .addParametricCallback(0.5, () -> robotFunctions.spinShooters(1.0))
                     .addParametricCallback(1.0, () -> {
                         try {
@@ -82,29 +82,29 @@ public class BlueDepot extends OpMode {
                     })
                     .addPath(
                             new BezierCurve(
-                                    new Pose(56.959, 97.779),
-                                    new Pose(56.884, 80.940),
-                                    new Pose(33.636, 82.889)
+                                    new Pose(52, 90.4),
+                                    new Pose(38.973, 94.781),
+                                    new Pose(33.636, 82.5)
                             )
                     )
-                    .setLinearHeadingInterpolation(Math.toRadians(320), Math.toRadians(180))
+                    .setLinearHeadingInterpolation(Math.toRadians(315), Math.toRadians(180))
                     .addParametricCallback(0.1, robotFunctions::stopShooters)
                     .addParametricCallback(1.0, () -> robotFunctions.spinIntake(0.8))
                     .addPath(
                             new BezierLine(
-                                    new Pose(33.636, 82.889),
-                                    new Pose(23.539, 82.687)
+                                    new Pose(33.636, 82.5),
+                                    new Pose(24.0, 82.5)
                             )
                     )
                     .setTangentHeadingInterpolation()
                     .addParametricCallback(1.0, robotFunctions::stopIntake)
                     .addPath(
                             new BezierLine(
-                                    new Pose(23.539, 82.687),
-                                    new Pose(56.959, 97.779)
+                                    new Pose(24.0, 82.5),
+                                    new Pose(52, 90.4)
                             )
                     )
-                    .setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(320))
+                    .setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(315))
                     .addParametricCallback(0.5, () -> robotFunctions.spinShooters(1.0))
                     .addParametricCallback(1.0, () -> {
                         try {
@@ -115,9 +115,9 @@ public class BlueDepot extends OpMode {
                     })
                     .addPath(
                             new BezierCurve(
-                                    new Pose(56.959, 97.779),
+                                    new Pose(52, 90.4),
                                     new Pose(30.119, 70.998),
-                                    new Pose(33.473, 58.500)
+                                    new Pose(33.636, 58.5)
                             )
                     )
                     .setLinearHeadingInterpolation(Math.toRadians(320), Math.toRadians(180))
@@ -134,10 +134,10 @@ public class BlueDepot extends OpMode {
                     .addPath(
                             new BezierLine(
                                     new Pose(24.000, 58.500),
-                                    new Pose(56.959, 97.779)
+                                    new Pose(52, 90.4)
                             )
                     )
-                    .setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(320))
+                    .setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(315))
                     .addParametricCallback(0.5, () -> robotFunctions.spinShooters(1.0))
                     .addParametricCallback(1.0, () -> {
                         try {
