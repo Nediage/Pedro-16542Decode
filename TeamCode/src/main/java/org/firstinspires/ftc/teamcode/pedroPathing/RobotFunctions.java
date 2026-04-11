@@ -104,6 +104,7 @@ public class RobotFunctions {
                     stopIntake();
                     midWheel.setPower(0.0);
                     trigger.setPosition(0.0);
+                    spinShooters(1.0);
                     shootStateStartTime = System.currentTimeMillis();
                     shootState = 4;
                 }
